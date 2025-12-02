@@ -45,13 +45,13 @@ Average Daily Sales per Store:
 
 Top-Selling Store per City (by total sales):
 
-+-------+--------+-----------+
-| city  | store_name | total_sales |
-+-------+--------+-----------+
-| Mumbai| StoreB | 2000      |
-| Delhi | StoreC | 2500      |
-| Chennai| StoreE | 900      |
-+-------+--------+-----------+
++-------+----------+-----------+
+|   city|store_name|total_sales|
++-------+----------+-----------+
+|  Delhi|    StoreC|       2500|
+| Mumbai|    StoreA|       2500|
+|Chennai|    StoreE|        900|
++-------+----------+-----------+
 
 
 Hints to Solve:
