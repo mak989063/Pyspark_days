@@ -1,0 +1,63 @@
+Scenario:
+You are working as a Data Engineer for a retail chain.
+The company keeps track of daily sales for multiple stores. Management wants a report that shows total sales, average sales per day, and top-selling store per city.
+
+Data:
+
+sales_data = [
+    ("StoreA", "Mumbai", "2025-11-01", 1000),
+    ("StoreA", "Mumbai", "2025-11-02", 1500),
+    ("StoreB", "Mumbai", "2025-11-01", 2000),
+    ("StoreC", "Delhi",  "2025-11-01", 1200),
+    ("StoreC", "Delhi",  "2025-11-02", 1300),
+    ("StoreD", "Delhi",  "2025-11-01", 1100),
+    ("StoreE", "Chennai","2025-11-01", 900),
+]
+
+df = spark.createDataFrame(sales_data, ["store_name", "city", "sale_date", "sale_amount"])
+
+
+Tasks / Output Requirements:
+
+Total Sales per City:
+
++-------+-----------+
+| city  | total_sales |
++-------+-----------+
+| Mumbai| 4500      |
+| Delhi | 3600      |
+| Chennai| 900      |
++-------+-----------+
+
+
+Average Daily Sales per Store:
+
++--------+-------------+
+|store_name | avg_daily_sales |
++--------+-------------+
+|StoreA    | 1250        |
+|StoreB    | 2000        |
+|StoreC    | 1250        |
+|StoreD    | 1100        |
+|StoreE    | 900         |
++--------+-------------+
+
+
+Top-Selling Store per City (by total sales):
+
++-------+--------+-----------+
+| city  | store_name | total_sales |
++-------+--------+-----------+
+| Mumbai| StoreB | 2000      |
+| Delhi | StoreC | 2500      |
+| Chennai| StoreE | 900      |
++-------+--------+-----------+
+
+
+Hints to Solve:
+
+Use groupBy() with aggregation (sum, avg) for total and average sales.
+
+Use window functions (row_number() over partition by city order by total sales desc) to find top-selling store.
+
+Ensure sale_date is of DateType if needed for daily aggregation.
