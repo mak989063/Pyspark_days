@@ -1,0 +1,35 @@
+Question 1
+Scenario:-
+You are working as a Data Engineer for an E-commerce company.
+Every day, customer order events come into a orders table.
+Due to streaming delays, some orders arrive late or out of order.
+Management wants to identify:
+For each customer:
+1)Total amount spent
+2)First order date
+3)Latest order date
+4)Average gap (in days) between consecutive orders
+You must use PySpark window functions to calculate this.
+
+Dataset:-
+data = [
+ ("C001", "2024-01-01", 500),
+ ("C001", "2024-01-10", 1000),
+ ("C001", "2024-01-04", 700),
+ ("C002", "2024-01-02", 300),
+ ("C002", "2024-01-15", 1200),
+ ("C002", "2024-01-20", 500),
+ ("C003", "2024-01-05", 900)
+]
+
+Schema:
+customer_id | order_date | amount
+
+Expected Output:-
++------------+-----------+-----------+----------+------------+
+|customer_id |total_spent|first_order|last_order|avg_days_gap|
++------------+-----------+-----------+----------+------------+
+|C001    |2200    |2024-01-01 |2024-01-10|4.5     |
+|C002    |2000    |2024-01-02 |2024-01-20|9.0     |
+|C003    |900    |2024-01-05 |2024-01-05|null    |
++------------+-----------+-----------+----------+------------+

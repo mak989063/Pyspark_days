@@ -1,0 +1,26 @@
+Question 2
+Scenario:
+You’re working as a Data Engineer for a power distribution company in India.
+A power company bills customers daily.Due to system glitches, some billing dates are missing in billing_logs.
+Management wants to detect all missing date gaps per customer between their first and last billing date.
+
+data = [
+ ("C001", "2024-01-01"),
+ ("C001", "2024-01-02"),
+ ("C001", "2024-01-04"),
+ ("C001", "2024-01-06"),
+ ("C002", "2024-01-03"),
+ ("C002", "2024-01-05"),
+]
+
+df = spark.createDataFrame(data, ["customer_id", "billing_date"])
+
+
+Output :
++------------+------------+------------+
+|customer_id |missing_from|missing_to |
++------------+------------+------------+
+|C001    |2024-01-03 |2024-01-03 |
+|C001    |2024-01-05 |2024-01-05 |
+|C002    |2024-01-04 |2024-01-04 |
++------------+------------+------------+
