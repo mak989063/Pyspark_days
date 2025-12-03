@@ -62,6 +62,7 @@ Window functions
 Optimization tips
 
 **📂 Repository Structure**
+
 ├── data/
 ├── scenario/
 ├── src/
