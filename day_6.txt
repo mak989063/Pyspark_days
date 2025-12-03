@@ -1,0 +1,37 @@
+Question 6
+
+Domain: FinTech – Digital Wallet Transactions
+
+Every day, users perform wallet transactions (add money, spend money, cashback).
+
+Because of network issues, some transactions arrive late or in the wrong order.
+
+Your task is to compute for each user:
+
+1️⃣ Total money credited (only credit_type = "ADD" or “CASHBACK”)
+2️⃣ Total money debited (credit_type = “SPEND”)
+3️⃣ First transaction date
+4️⃣ Most recent transaction date
+5️⃣ Average number of days between consecutive transactions (using window functions)
+
+data = [
+ ("U001", "2025-01-01", 2000, "ADD"),
+ ("U001", "2025-01-05",  500, "SPEND"),
+ ("U001", "2025-01-03",  200, "CASHBACK"),
+ ("U002", "2025-01-02", 3000, "ADD"),
+ ("U002", "2025-01-15", 1000, "SPEND"),
+ ("U002", "2025-01-10",  300, "CASHBACK"),
+ ("U003", "2025-01-08",  900, "ADD")
+]
+
+Schema:
+user_id | txn_date | amount | txn_type
+
+Expected output:
++--------+------------+------------+---------------+---------------+-------------+
+|user_id |total_credit|total_debit |first_txn_date |last_txn_date  |avg_days_gap |
++--------+------------+------------+---------------+---------------+-------------+
+|U001    |2200        |500         |2025-01-01     |2025-01-05     |2.0          |
+|U002    |3300        |1000        |2025-01-02     |2025-01-15     |6.5          |
+|U003    |900         |0           |2025-01-08     |2025-01-08     |null         |
++--------+------------+------------+---------------+---------------+-------------+
