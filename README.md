@@ -1,4 +1,4 @@
-**🚀 PySpark Learning Journey — Manikandan**
+**🚀 PySpark Learning Journey with Mani**
 
 Welcome to my PySpark Learning Journey repository!
 This repo documents my hands-on practice, daily exercises, use-cases, and end-to-end data engineering scenarios using PySpark, SQL, and big-data concepts.
