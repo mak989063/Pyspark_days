@@ -1,12 +1,13 @@
-🚀 PySpark Learning Journey — Manikandan
+**🚀 PySpark Learning Journey — Manikandan**
 
 Welcome to my PySpark Learning Journey repository!
 This repo documents my hands-on practice, daily exercises, use-cases, and end-to-end data engineering scenarios using PySpark, SQL, and big-data concepts.
 
 My goal is to build strong, interview-ready skills in PySpark and Data Engineering.
 
-📘 What This Repository Contains
-✅ 1. Daily PySpark Coding Practice
+**📘 What This Repository Contains**
+
+✅ 1. **Daily PySpark Coding Practice**
 
 Transformations & Actions
 
@@ -18,7 +19,7 @@ Handling nulls, duplicates, and data quality rules
 
 UDFs, performance tuning basics
 
-✅ 2. Scenario-Based Real DE Problems
+✅ 2. **Scenario-Based Real DE Problems**
 
 Every folder includes real interview-style questions such as:
 
@@ -34,7 +35,7 @@ Skew handling
 
 Partitioning & performance tuning
 
-✅ 3. End-to-End Mini Projects
+✅ 3. **End-to-End Mini Projects**
 
 Practical PySpark pipelines:
 
@@ -48,7 +49,7 @@ Partitioning, bucketing, and caching
 
 Sample Airflow DAGs for orchestration
 
-✅ 4. SQL + PySpark Equivalent Solutions
+✅ 4. **SQL + PySpark Equivalent Solutions**
 
 Side-by-side comparison:
 
@@ -60,13 +61,13 @@ Window functions
 
 Optimization tips
 
-📂 Repository Structure
+**📂 Repository Structure**
 ├── data/
 ├── scenario/
 ├── src/
 └── README.md
 
-🎯 Learning Goals
+*🎯 Learning Goals*
 
 Write clean, optimized PySpark code
 
@@ -80,7 +81,7 @@ Improve debugging + logging skills
 
 Prepare for real DE interviews
 
-🧠 Topics I am Mastering
+*🧠 Topics I am Mastering*
 
 Spark Architecture (Driver, Executors)
 
@@ -94,7 +95,7 @@ Narrow vs wide transformations
 
 ETL pipeline design
 
-📝 How I Practice
+*📝 How I Practice*
 
 Pick one real scenario every day
 
