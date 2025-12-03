@@ -1,0 +1,52 @@
+Question 5
+
+Scenario:-
+You are working as a Data Engineer for a Telecom company.
+Every day you receive a dataset of customer recharge/usage records.
+Management wants to classify customers into 3 buckets
+
+Status - Logic
+Active - Last activity date is within last 30 days
+Dormant - Activity date is between 31–90 days
+Inactive - No activity for more than 90 days
+
+write PySpark code that:
+1)Finds each customer's latest activity date
+2)Compares it with the current date
+3)Assigns the correct status label
+
+Dataset
+data = [
+ ("C001", "2025-06-01", "Recharge"),
+ ("C001", "2025-10-10", "Call"),
+ ("C002", "2025-11-15", "Call"),
+ ("C002", "2025-12-01", "Recharge"),
+ ("C003", "2025-07-01", "SMS"),
+ ("C004", "2025-02-27", "Recharge"),
+ ("C005", "2025-10-20", "Call")
+]
+
+Schema:
+customer_id | activity_date | activity_type
+(Assume today's date = 2024-03-15)
+
+Output:
++-----------+--------------------+--------+
+|customer_id|Latest Activity Date|  status|
++-----------+--------------------+--------+
+|       C001|          2025-10-10| Dormant|
+|       C002|          2025-12-01|  Active|
+|       C003|          2025-07-01|Inactive|
+|       C004|          2025-02-27|Inactive|
+|       C005|          2025-10-20| Dormant|
++-----------+--------------------+--------+
+
+Key PySpark Functions Used
+->to_date() – Convert string to proper DateType
+->groupBy() + agg() – Aggregate per customer
+->max() – Extract latest activity date
+->lit() – Add fixed date (today’s date)
+->datediff() – Calculate days between last activity and today
+->when() / otherwise() – Apply conditional logic for status
+->orderBy() + desc() – Sort customers by inactivity
+->col() – Refer to columns inside functions
