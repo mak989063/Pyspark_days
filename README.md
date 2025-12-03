@@ -61,14 +61,11 @@ Window functions
 
 Optimization tips
 
-**📂 Repository Structure**
+*📂 Repository Structure*
 
 ├── data/
-
 ├── scenario/
-
 ├── src/
-
 └── README.md
 
 *🎯 Learning Goals*
