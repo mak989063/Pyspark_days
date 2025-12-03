@@ -64,8 +64,11 @@ Optimization tips
 **📂 Repository Structure**
 
 ├── data/
+
 ├── scenario/
+
 ├── src/
+
 └── README.md
 
 *🎯 Learning Goals*
