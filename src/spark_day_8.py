@@ -36,7 +36,7 @@ df = df.withColumn("time_diff_min", F.round(F.try_subtract(F.to_timestamp("txn_t
 #fraud_flag
 df = df.withColumn("fraud_flag",
                    F.when (
-                       (F.col("time_diff_min") < 2) &
+                       (F.col("time_diff_min") <= 2) &
                        (F.col("amount")>10000) &
                        (F.col("prev_amount")>10000), "YES" )
                    .otherwise("NO"))
