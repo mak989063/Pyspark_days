@@ -1,0 +1,97 @@
+Question 7
+
+Scenario:
+You work as a Data Engineer for a hospital chain.
+Every hospital sends daily logs of patient vitals (temperature, pulse, BP, oxygen level).
+Due to system delays, the records may come:
+
+out of order
+
+with missing days
+
+with duplicate readings
+
+You must generate patient-level health insights.
+
+📌 Dataset
+data = [
+ ("P001", "2025-01-01", 98.5, 80, 120, 98),
+ ("P001", "2025-01-03", 99.1, 82, 118, 97),
+ ("P001", "2025-01-02", 101.0, 90, 130, 94),
+
+ ("P002", "2025-01-01", 97.8, 78, 122, 99),
+ ("P002", "2025-01-10", 102.0, 95, 140, 92),
+
+ ("P003", "2025-01-05", 100.5, 88, 135, 93)
+]
+
+
+Schema:
+
+patient_id | reading_date | temperature | pulse | bp | oxygen
+
+🧠 Tasks
+1️⃣ Find the First and Latest Reading for Each Patient
+
+Using min(reading_date) and max(reading_date)
+(or window functions).
+
+2️⃣ Identify Fever Spikes
+
+A fever spike is when:
+
+temperature > 100.4
+
+
+Output:
+
+patient_id | spike_count
+
+3️⃣ Compute the Avg Gap Between Health Readings
+
+Use window + lag():
+
+days_gap = reading_date - prev_reading_date
+
+
+Then compute avg(days_gap) per patient.
+
+4️⃣ Find the Highest Pulse Reading AND the Date It Occurred
+
+Use window function:
+
+row_number() over(partition by patient_id order by pulse desc)
+
+5️⃣ Label Overall Patient Risk Level
+
+Rules:
+
+If latest temperature > 100.4 → "High Risk"
+Else if oxygen < 95 → "Medium Risk"
+Else → "Normal"
+
+
+Use when, otherwise.
+
+6️⃣ Detect Missing Daily Records
+
+For each patient:
+
+Generate a full date range between first and last reading
+
+Left join to the actual readings
+
+Identify missing dates
+
+Output:
+
+patient_id | missing_date
+
+7️⃣ Final Combined Output
++-----------+--------------+-------------+------------+-------------+-------------+------------+
+|patient_id | first_reading| last_reading| spike_count| max_pulse    | avg_gap_days| risk_level |
++-----------+--------------+-------------+------------+-------------+-------------+------------+
+|P001       | 2025-01-01   | 2025-01-03  |    1       |   90        |     1.0      | High Risk  |
+|P002       | 2025-01-01   | 2025-01-10  |    1       |   95        |     9.0      | High Risk  |
+|P003       | 2025-01-05   | 2025-01-05  |    0       |   88        |    null      | Medium Risk|
++-----------+--------------+-------------+------------+-------------+-------------+------------+
