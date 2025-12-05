@@ -1,0 +1,32 @@
+Question 10
+Scenario:-
+You’re working as a Data Engineer for a bank.
+ Customer profile data is received daily from multiple upstream systems.
+Because of retries and system issues, you often get duplicate records for the same customer_id, with different update timestamps.
+
+Your job:
+For each customer_id, keep only the latest record based on last_updated_ts and remove older duplicates.4
+
+Sample Dataset:-
+customer_id | name   | city   | last_updated_ts
+-------------------------------------------------------------
+C001    | Rahul   | Mumbai  | 2024-01-01 10:00:00
+C001    | Rahul K  | Mumbai  | 2024-01-02 09:00:00  <-- latest
+C002    | Sneha   | Pune   | 2024-01-05 12:00:00
+C002    | Sneha   | Pune   | 2024-01-05 12:00:00  <-- exact duplicate
+C003    | Amit   | Delhi   | 2024-01-03 08:30:00
+C003    | Amit   | New Delhi | 2024-01-04 11:15:00  <-- latest
+
+Short Columnar Output:-
+customer_id | name  | city    | last_updated_ts
+-------------------------------------------------------------
+C001    | Rahul K | Mumbai   | 2024-01-02 09:00:00
+C002    | Sneha  | Pune    | 2024-01-05 12:00:00
+C003    | Amit  | New Delhi | 2024-01-04 11:15:00
+
+Key PySpark Functions Used
+->to_timestamp() – Convert string to TimestampType
+->Window.partitionBy().orderBy() – Define per-customer ordering
+->row_number() – Rank rows within each customer group
+->filter("rn = 1") – Keep only top-ranked (latest) record
+->drop() – Remove helper column rn

@@ -1,0 +1,20 @@
+Question 9
+
+Given a clickstream of user activity data, find the relevant user session for each click event.
+
++----------------------+---------+
+| click_time           | user_id |
++----------------------+---------+
+| 2018–01–01 11:00:00  | u1      |
+| 2018–01–01 12:00:00  | u1      |
+| 2018–01–01 13:00:00  | u1      |
+| 2018–01–01 13:00:00  | u1      |
+| 2018–01–01 14:00:00  | u1      |
+| 2018–01–01 15:00:00  | u1      |
+| 2018–01–01 11:00:00  | u2      |
+| 2018–01–02 11:00:00  | u2      |
++----------------------+---------+
+Session definition:
+
+session expires after inactivity of 30mins, because of inactivity no clickstream will be generated
+Session remains active for a total of 2 hours
