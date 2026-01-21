@@ -1,0 +1,42 @@
+Scenario: Football Analytics – Match Outcome & Goal Aggregation
+
+You are working as a Data Engineer for a sports analytics platform that processes football match data.
+
+Each match has two teams, and each team scores a certain number of goals.
+The analytics team wants to derive match-level insights from team-level records.
+
+data = [
+ ("G101", "Team A", 2),
+ ("G101", "Team B", 1),
+ ("G102", "Team C", 0),
+ ("G102", "Team D", 3),
+ ("G103", "Team A", 1),
+ ("G103", "Team C", 1),
+ ("G104", "Team B", 4),
+ ("G104", "Team D", 0),
+]
+
+columns = ["game_id", "team_name", "goals_scored"]
+
+Write a PySpark program to generate a match-level summary with the following requirements:
+
+1. For each game_id, compute:
+
+    total_goals → Total goals scored in the match
+
+2. winning_team →
+
+    Team with maximum goals
+    If both teams scored the same number of goals, output "DRAW"
+
+Expected output
+
++-------+------------+-------------+
+|game_id|total_goals |winning_team |
++-------+------------+-------------+
+|G101   |3           |Team A       |
+|G102   |3           |Team D       |
+|G103   |2           |DRAW         |
+|G104   |4           |Team B       |
++-------+------------+-------------+
+
