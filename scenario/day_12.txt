@@ -1,0 +1,64 @@
+Scenario: Daily Bank Transactions Monitoring
+
+You are a Data Engineer working for a digital bank.
+
+Each transaction record contains:
+
+account_id
+
+transaction_date
+
+amount (positive = credit, negative = debit)
+
+Due to system issues, multiple transactions can occur on the same day for the same account.
+
+Management wants a daily account summary.
+
+📌 Input Dataset
+data = [
+    ("A001", "2024-01-01",  500),
+    ("A001", "2024-01-01", -200),
+    ("A001", "2024-01-03", -100),
+    ("A001", "2024-01-04",  300),
+
+    ("A002", "2024-01-02", 1000),
+    ("A002", "2024-01-02", -500),
+    ("A002", "2024-01-05", -200),
+
+    ("A003", "2024-01-01",  400),
+    ("A003", "2024-01-02",  600),
+]
+
+columns = ["account_id", "transaction_date", "amount"]
+
+🎯 Requirements
+
+Write a PySpark solution to produce one row per account per day with:
+
+1️⃣ daily_balance → sum of all transactions for that account on that day
+2️⃣ transaction_type
+
+"CREDIT" → if daily_balance > 0
+
+"DEBIT" → if daily_balance < 0
+
+"ZERO" → if daily_balance = 0
+
+3️⃣ running_balance
+
+Cumulative balance per account
+
+Ordered by transaction_date
+
+✅ Expected Output
++----------+----------------+-------------+-----------------+----------------+
+|account_id|transaction_date|daily_balance|transaction_type|running_balance|
++----------+----------------+-------------+-----------------+----------------+
+|A001      |2024-01-01      |300          |CREDIT           |300             |
+|A001      |2024-01-03      |-100         |DEBIT            |200             |
+|A001      |2024-01-04      |300          |CREDIT           |500             |
+|A002      |2024-01-02      |500          |CREDIT           |500             |
+|A002      |2024-01-05      |-200         |DEBIT            |300             |
+|A003      |2024-01-01      |400          |CREDIT           |400             |
+|A003      |2024-01-02      |600          |CREDIT           |1000            |
++----------+----------------+-------------+-----------------+----------------+
